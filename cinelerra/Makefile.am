@@ -129,6 +129,7 @@ cinelerracv_SOURCES = aattachmentpoint.C \
 		    edlsession.C \
 		    exportedl.C \
 		    fadeengine.C \
+                    ffmpeg.C \
 		    fileac3.C \
 		    filebase.C \
 		    file.C \
@@ -427,6 +428,7 @@ noinst_HEADERS = aattachmentpoint.h \
 		 fadeengine.h \
 		 feather.h \
 		 featheredits.h \
+                 ffmpeg.h \
 		 fileac3.h \
 		 filebase.h \
 		 fileformat.h \
