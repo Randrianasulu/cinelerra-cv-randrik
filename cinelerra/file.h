@@ -178,8 +178,7 @@ public:
 
 // The following involve no extra copies.
 // Direct copy routines for direct copy playback
-	int can_copy_from(Edit *edit, int64_t position, int output_w, int output_h)
-		{ return 0; };
+	int can_copy_from(Edit *edit, int64_t position, int output_w, int output_h); // This file can copy frames directly from the asset
 	int get_render_strategy(ArrayList<int>* render_strategies);
 	int64_t compressed_frame_size();
 	int read_compressed_frame(VFrame *buffer);
