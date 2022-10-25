@@ -118,7 +118,9 @@ int FFMPEG::pix_fmt_to_color_model(PixelFormat pix_fmt) {
 	return BC_TRANSPARENCY;
 }
 
-int FFMPEG::init_picture_from_frame(AVPicture *picture, VFrame *frame) {
+int FFMPEG::init_picture_from_frame(AVPicture *picture, VFrame *frame) 
+{
+
 	int cmodel = frame->get_color_model();
 	PixelFormat pix_fmt = color_model_to_pix_fmt(cmodel);
 
@@ -130,7 +132,7 @@ int FFMPEG::init_picture_from_frame(AVPicture *picture, VFrame *frame) {
 		return 1;
 	}
 
-	if (cmodel_is_planar(frame->get_color_model())) {
+	if (BC_CModels::is_planar(frame->get_color_model())) {
 		// override avpicture_fill() for planar types
 		picture->data[0] = frame->get_y();
 		picture->data[1] = frame->get_u();
@@ -194,6 +196,7 @@ int FFMPEG::convert_cmodel(VFrame *frame_in,  VFrame *frame_out) {
 }  
 
 int FFMPEG::convert_cmodel_transfer(VFrame *frame_in, VFrame *frame_out) {
+/*
 	
 	// WARNING: cmodel_transfer is said to be broken with BC_YUV411P
 	cmodel_transfer
@@ -222,7 +225,7 @@ int FFMPEG::convert_cmodel_transfer(VFrame *frame_in, VFrame *frame_out) {
 		 frame_in->get_w(), frame_out->get_w()
 		 
 		 );
-
+*/
 	return 0;
 }
 
@@ -315,22 +318,27 @@ int FFMPEG::convert_cmodel(AVPicture *picture_in, PixelFormat pix_fmt_in,
 	// if we reach here we know that cmodel_transfer() will work
 	uint8_t *yuv_in[3] = {0,0,0};
 	uint8_t *row_pointers_in[height_in];
-	if (cmodel_is_planar(cmodel_in)) {
+
+	if (BC_CModels::is_planar(cmodel_in)) {
 		yuv_in[0] = picture_in->data[0];
 		yuv_in[1] = picture_in->data[1];
 		yuv_in[2] = picture_in->data[2];
+
 	}
+
 	else {
+
 		// set row pointers for picture_in 
 		uint8_t *data = picture_in->data[0];
 		int bytes_per_line = 
-			cmodel_calculate_pixelsize(cmodel_in) * height_in;
+			BC_CModels::calculate_pixelsize(cmodel_in) * height_in;
 		for (int i = 0; i < height_in; i++) {
 			row_pointers_in[i] = data + i * bytes_per_line;
 		}
-	}
 
-	cmodel_transfer
+	}
+/*
+	BC_CModels::cmodel_transfer
 		(// Packed data out 
 		 frame_out->get_rows(), 
 		 // Packed data in
@@ -356,7 +364,7 @@ int FFMPEG::convert_cmodel(AVPicture *picture_in, PixelFormat pix_fmt_in,
 		 width_in, width_in
 		 
 		 );
-
+*/
 	return 0;
 }
 
