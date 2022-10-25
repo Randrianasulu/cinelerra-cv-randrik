@@ -173,7 +173,8 @@ int FileYUV::read_frame(VFrame *frame)
 	// transfer from the temp frame to the real one
 	if (input != frame) 
 	{
-		FFMPEG::convert_cmodel(input, frame);
+		//FFMPEG::convert_cmodel(input, frame);
+		frame->transfer_from(input);
 	}
 	return 0;
 }
@@ -238,7 +239,8 @@ int FileYUV::write_frames(VFrame ***layers, int len)
 			(frame->get_h() != stream->get_height()))
 		{
 			ensure_temp(asset->width, asset->height);
-			FFMPEG::convert_cmodel(frame, temp);
+			//FFMPEG::convert_cmodel(frame, temp);
+			temp->transfer_from(frame);
 			frame = temp;
 		}
 
