@@ -51,6 +51,7 @@
 #include "mutex.h"
 #include "mwindow.h"
 #include "pluginserver.h"
+#include "preferences.h"
 #include "resample.h"
 #include "vframe.h"
 
@@ -102,6 +103,7 @@ void File::reset_parameters()
 	resample = 0;
 	resample_float = 0;
 	use_cache = 0;
+	can_directcopy = 0;
 	preferences = 0;
 	playback_subtitle = -1;
 }
@@ -297,14 +299,6 @@ int File::purge_cache()
 
 
 
-
-
-
-
-
-
-
-
 int File::open_file(Preferences *preferences, 
 	Asset *asset, 
 	int rd, 
@@ -313,6 +307,7 @@ int File::open_file(Preferences *preferences,
 	float base_framerate)
 {
 	this->preferences = preferences;
+	can_directcopy = preferences->use_directcopy;
 	this->asset->copy_from(asset, 1);
 	file = 0;
 
@@ -1075,6 +1070,10 @@ int File::read_frame(VFrame *frame, int is_thread)
 
 int File::can_copy_from(Edit *edit, int64_t position, int output_w, int output_h)
 {
+
+if (can_directcopy == 0)
+return 0;
+
 	if(file)
 	{
 		return edit->asset->width == output_w &&

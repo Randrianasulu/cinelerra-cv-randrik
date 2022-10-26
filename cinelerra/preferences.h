@@ -124,6 +124,9 @@ public:
 // Tip of the day
 	int use_tipwindow;
 
+// Use direct copy if possible
+	int use_directcopy;
+
 // ====================================== Plugin Set ==============================
 	char global_plugin_dir[BCTEXTLEN];
 	char local_plugin_dir[BCTEXTLEN];

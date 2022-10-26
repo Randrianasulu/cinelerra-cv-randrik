@@ -75,6 +75,7 @@ Preferences::Preferences()
 	local_rate = 0.0;
 
 	use_tipwindow = 1;
+	use_directcopy = 1;
 
 	for(int i = 0; i < MAXCHANNELS; i++)
 	{
@@ -142,6 +143,7 @@ void Preferences::copy_from(Preferences *that)
 	strcpy(theme, that->theme);
 
 	use_tipwindow = that->use_tipwindow;
+	use_directcopy = that->use_directcopy;
 
 	cache_size = that->cache_size;
 	force_uniprocessor = that->force_uniprocessor;
@@ -246,6 +248,7 @@ int Preferences::load_defaults(BC_Hash *defaults)
 	char string[BCTEXTLEN];
 
 	use_tipwindow = defaults->get("USE_TIPWINDOW", use_tipwindow);
+	use_directcopy = defaults->get("USE_DIRECTCOPY", use_directcopy);
 	defaults->get("INDEX_DIRECTORY", index_directory);
 	index_size = defaults->get("INDEX_SIZE", index_size);
 	index_count = defaults->get("INDEX_COUNT", index_count);
@@ -338,6 +341,7 @@ int Preferences::save_defaults(BC_Hash *defaults)
 
 
 	defaults->update("USE_TIPWINDOW", use_tipwindow);
+	defaults->update("USE_DIRECTCOPY", use_directcopy);
 
 	defaults->update("CACHE_SIZE", cache_size);
 	defaults->update("INDEX_DIRECTORY", index_directory);
@@ -634,17 +638,4 @@ int Preferences::calculate_processors(int interactive)
 
 	return result;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 

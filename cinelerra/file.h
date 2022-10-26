@@ -239,6 +239,8 @@ public:
 	int64_t normalized_sample;
 	int64_t normalized_sample_rate;
 	Preferences *preferences;
+// can do directcopy
+	int can_directcopy;
 
 	static PackagingEngine *new_packaging_engine(Asset *asset);
 
