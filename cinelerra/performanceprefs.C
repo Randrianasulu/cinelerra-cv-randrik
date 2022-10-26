@@ -100,6 +100,9 @@ int PerformancePrefs::create_objects()
 	add_subwindow(new PrefsForceUniprocessor(pwindow, x, y));
 
 	y += 35;
+	add_subwindow(new PrefsEnableDirectcopy(pwindow, x, y));
+	y += 35;
+
 
 
 
@@ -477,6 +480,23 @@ PrefsForceUniprocessor::~PrefsForceUniprocessor()
 int PrefsForceUniprocessor::handle_event()
 {
 	pwindow->thread->preferences->force_uniprocessor = get_value();
+	return 1;
+}
+
+PrefsEnableDirectcopy::PrefsEnableDirectcopy(PreferencesWindow *pwindow, int x, int y)
+ : BC_CheckBox(x, 
+ 	y, 
+	pwindow->thread->preferences->use_directcopy,
+	_("Use direct copy for media"))
+{
+	this->pwindow = pwindow;
+}
+PrefsEnableDirectcopy::~PrefsEnableDirectcopy()
+{
+}
+int PrefsEnableDirectcopy::handle_event()
+{
+	pwindow->thread->preferences->use_directcopy = get_value();
 	return 1;
 }
 

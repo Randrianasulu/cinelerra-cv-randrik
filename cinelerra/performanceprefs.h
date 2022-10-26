@@ -118,6 +118,18 @@ public:
 	PreferencesWindow *pwindow;
 };
 
+class PrefsEnableDirectcopy : public BC_CheckBox
+{
+public:
+	PrefsEnableDirectcopy(PreferencesWindow *pwindow, int x, int y);
+	~PrefsEnableDirectcopy();
+	
+	int handle_event();
+	
+	
+	PreferencesWindow *pwindow;
+};
+
 
 
 
