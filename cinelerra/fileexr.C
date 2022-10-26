@@ -23,6 +23,7 @@
 #include "bcsignals.h"
 #include "bccmodels.h"
 #include "clip.h"
+#include "edit.h"
 #include "fileexr.h"
 #include "filesystem.h"
 #include "interlacemodes.h"
@@ -506,6 +507,15 @@ int FileEXR::write_frame(VFrame *frame, VFrame *data, FrameWriterUnit *unit)
 				sizeof(float) * components * output_frame->get_w()));
 	file.setFrameBuffer(framebuffer);
 	file.writePixels(asset->height);
+	return 0;
+}
+
+int FileEXR::can_copy_from(Edit *edit, int64_t position)
+{
+	if(edit->asset->format == FILE_EXR || 
+		edit->asset->format == FILE_EXR_LIST)
+		return 1;
+
 	return 0;
 }
 
