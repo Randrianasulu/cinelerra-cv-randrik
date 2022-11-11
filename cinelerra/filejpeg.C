@@ -297,7 +297,7 @@ int FileJPEG::write_frame(VFrame *frame, VFrame *data, FrameWriterUnit *unit)
 	jpeg_set_defaults(&cinfo);
 	jpeg_set_quality(&cinfo, asset->jpeg_quality, TRUE);
 	jpeg_start_compress(&cinfo, TRUE);
-	for(int i; i < cinfo.image_height; i++)
+	for(int i=0; i < cinfo.image_height; i++)
 	{
 		row_pointer[0] = work_frame->get_data() + i * work_frame->get_bytes_per_line();
 		jpeg_write_scanlines(&cinfo, row_pointer, 1);
