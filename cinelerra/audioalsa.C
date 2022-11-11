@@ -146,7 +146,7 @@ void AudioALSA::translate_name(char *output, char *input)
 {
 	ArrayList<char*> titles;
 	ArrayList<char*> pcm_titles;
-	int mode;
+	int mode = 0;
 	if(device->r) mode = MODERECORD;
 	else
 	if(device->w) mode = MODEPLAY;
