@@ -496,8 +496,8 @@ int TrackCanvas::drag_stop()
 		case DRAG_ASSET:
 			if(mwindow->session->track_highlighted)
 			{
-				float asset_length_float;
-				int64_t asset_length_units;
+				float asset_length_float = 0.0f;
+				int64_t asset_length_units = 0;
 				int64_t position = 0;
 					
 				if(mwindow->session->current_operation == DRAG_ASSET &&
@@ -4038,8 +4038,8 @@ int TrackCanvas::update_drag_pluginauto(int cursor_x, int cursor_y)
 //	printf("uida: autos: %p, track: %p ta: %p\n", current->autos, current->autos->track, current->autos->track->automation);
 		Track *track = current->autos->track;
 		PluginAutos *pluginautos = (PluginAutos *)current->autos;
-		PluginSet *pluginset;
-		Plugin *plugin;
+		PluginSet *pluginset = 0;
+		Plugin *plugin = 0;
 // figure out the correct pluginset & correct plugin 
 		int found = 0;
 		for(int i = 0; i < track->plugin_set.total; i++)
