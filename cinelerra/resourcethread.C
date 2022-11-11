@@ -385,8 +385,8 @@ void ResourceThread::do_audio(AResourceThreadItem *item)
 {
 // Search again
 	WaveCacheItem *wave_item;
-	double high;
-	double low;
+	double high = 0.0f;
+	double low = 0.0f;
 	
 	if((wave_item = mwindow->wave_cache->get_wave(item->asset->id,
 		item->channel,
