@@ -137,7 +137,7 @@ SET_TEMP(socket_path);
 
 void BRender::run()
 {
-	char string[BCTEXTLEN];
+	char string[BCTEXTLEN]="";
 	size_t size;
 	FILE *fd;
 //printf("BRender::run 1 %d\n", getpid());
