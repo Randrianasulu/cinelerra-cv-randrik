@@ -39,37 +39,7 @@
 #include <unistd.h>
 #include <libdv/dv.h>
 
-#if 0
-N_("MPEG-4")
-N_("Dual H.264")
-N_("Dual MPEG-4")
-N_("H.264")
-N_("H.263")
-N_("Microsoft MPEG-4")
-N_("DV")
-N_("PNG")
-N_("PNG with Alpha")
-N_("Uncompressed RGB")
-N_("Uncompressed RGBA")
-N_("YUV 4:2:0 Planar")
-N_("Component Y'CbCr 8-bit 4:2:2 (yuv2)")
-N_("Component Y'CbCr 8-bit 4:2:2 (2vuy)")
-N_("YUV 4:1:1 Packed")
-N_("Component Y'CbCr 8-bit 4:4:4")
-N_("Component Y'CbCrA 8-bit 4:4:4:4")
-N_("Component Y'CbCr 10-bit 4:4:4")
-N_("JPEG Photo")
-N_("Motion JPEG A")
 
-
-N_("Twos complement")
-N_("Unsigned")
-N_("IMA-4")
-N_("U-Law")
-N_("Vorbis")
-N_("MP3")
-N_("MPEG-4 Audio")
-#endif
 
 #define DIVX_NAME "MPEG-4"
 #define HV64_NAME "Dual H.264"
@@ -78,6 +48,7 @@ N_("MPEG-4 Audio")
 #define H263_NAME "H.263"
 #define HV60_NAME "Dual MPEG-4"
 #define DIV3_NAME "Microsoft MPEG-4"
+#define DNXHD_NAME "Adobe's DNxHD"
 #define DV_NAME "DV"
 #define PNG_NAME "PNG"
 #define PNGA_NAME "PNG with Alpha"
@@ -97,7 +68,6 @@ N_("MPEG-4 Audio")
 #define RAW_NAME "Unsigned"
 #define IMA4_NAME "IMA-4"
 #define ULAW_NAME "U-Law"
-//#define VORBIS_NAME "Vorbis"
 #define MP3_NAME "MP3"
 #define MP4A_NAME "MPEG-4 Audio"
 #define VORBIS_NAME "OGG Vorbis"
@@ -1173,6 +1143,7 @@ const char* FileMOV::strtocompression(const char *string)
 	if(!strcasecmp(string, _(H263_NAME))) return QUICKTIME_H263;
 	if(!strcasecmp(string, _(HV60_NAME))) return QUICKTIME_HV60;
 	if(!strcasecmp(string, _(DIV3_NAME))) return QUICKTIME_DIV3;
+	if(!strcasecmp(string, _(DNXHD_NAME))) return QUICKTIME_DNXHD;
 // Students say QUICKTIME_DV is required for compression even though
 // QUICKTIME_DVSD is produced by other software
 //	if(!strcasecmp(string, _(DV_NAME))) return QUICKTIME_DVSD;
@@ -1213,6 +1184,7 @@ const char* FileMOV::compressiontostr(const char *string)
 	if(match4(string, QUICKTIME_MP4V)) return _(MP4V_NAME);
 	if(match4(string, QUICKTIME_HV60)) return _(HV60_NAME);
 	if(match4(string, QUICKTIME_DIV3)) return _(DIV3_NAME);
+	if(match4(string, QUICKTIME_DNXHD)) return _(DNXHD_NAME);
 	if(match4(string, QUICKTIME_DV)) return _(DV_NAME);
 	if(match4(string, QUICKTIME_DVCP)) return _(DV_NAME);
 	if(match4(string, QUICKTIME_DVSD)) return _(DV_NAME);
@@ -1706,6 +1678,7 @@ int MOVConfigVideo::create_objects()
 		compression_items.append(new BC_ListBoxItem(_(MP4V_NAME)));
 		compression_items.append(new BC_ListBoxItem(_(HV60_NAME)));
 		compression_items.append(new BC_ListBoxItem(_(DIV3_NAME)));
+		compression_items.append(new BC_ListBoxItem(_(DNXHD_NAME)));
 		compression_items.append(new BC_ListBoxItem(_(DV_NAME)));
 		compression_items.append(new BC_ListBoxItem(_(QTJPEG_NAME)));
 		compression_items.append(new BC_ListBoxItem(_(MJPA_NAME)));
@@ -2175,12 +2148,5 @@ int MOVConfigVideoPopup::handle_event()
 	popup->update_parameters();
 	return 1;
 }
-
-
-
-
-
-
-
 
 

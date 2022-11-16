@@ -648,6 +648,10 @@ static int encode(quicktime_t *file, unsigned char **row_pointers, int track)
 			context->height = height_i;
 			context->gop_size = codec->gop_size;
 			context->pix_fmt = PIX_FMT_YUV420P;
+			
+			if(codec->ffmpeg_id == CODEC_ID_DNXHD)
+			context->pix_fmt = PIX_FMT_YUV422P;
+			
 			context->bit_rate = codec->bitrate / codec->total_fields;
 			context->bit_rate_tolerance = codec->bitrate_tolerance;
 			context->rc_eq = video_rc_eq;
@@ -853,10 +857,19 @@ static int encode(quicktime_t *file, unsigned char **row_pointers, int track)
 		}
 		else
 		{
+			int encode_cmodel = BC_YUV420P;
+			if(codec->ffmpeg_id == CODEC_ID_DNXHD)
+			encode_cmodel = BC_YUV422P;
+			
 			if(!codec->temp_frame)
 			{
+				if(encode_cmodel == BC_YUV420P)
 				codec->temp_frame = malloc(width_i * height_i * 3 / 2);
+				if(encode_cmodel == BC_YUV422P)
+				codec->temp_frame = malloc(width_i * height_i * 3);
 			}
+			
+			
 
 			cmodel_transfer(0, /* Leave NULL if non existent */
 				row_pointers,
@@ -875,7 +888,7 @@ static int encode(quicktime_t *file, unsigned char **row_pointers, int track)
 				width, 
 				height,
 				file->color_model, 
-				BC_YUV420P,
+				encode_cmodel,
 				0,         /* When transfering BC_RGBA8888 to non-alpha this is the background color in 0xRRGGBB hex */
 				width,       /* For planar use the luma rowspan */
 				width_i);
