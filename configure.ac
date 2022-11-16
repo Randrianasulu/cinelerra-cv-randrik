@@ -538,7 +538,9 @@ if test "x$with_external_ffmpeg" = "xyes"; then
 	echo Using external ffmpeg - no configuration needed
 else
 	ff_conf_args="--disable-ffmpeg --disable-ffserver --disable-ffplay \
-		--disable-static --enable-shared --build-suffix=-cv"
+		--disable-static --enable-pthreads --enable-shared --build-suffix=-cv \
+		--disable-devices --disable-protocols --disable-network --disable-demuxers \
+		--disable-muxers --disable-bsfs"
 
 	if test "x$enable_mmx" = "xno"; then
 		ff_conf_args="$ff_conf_args --disable-mmx"
