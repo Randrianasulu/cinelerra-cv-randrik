@@ -32,7 +32,11 @@ quicktime_ffmpeg_t* quicktime_new_ffmpeg(int cpus,
 	quicktime_ffmpeg_t *ptr = calloc(1, sizeof(quicktime_ffmpeg_t));
 	quicktime_esds_t *esds = &stsd_table->esds;
 	quicktime_avcc_t *avcc = &stsd_table->avcc;
+	
 	int i;
+	
+	uint8_t * user_atom;
+	uint32_t user_atom_len;
 
 	ptr->fields = fields;
 	ptr->width = w;
@@ -76,6 +80,7 @@ quicktime_ffmpeg_t* quicktime_new_ffmpeg(int cpus,
 //		context->height = h;
 		context->extradata = fake_data;
 		context->extradata_size = 0;
+		printf("esds size: %i \n", esds->mpeg4_header_size);
 		if(esds->mpeg4_header && esds->mpeg4_header_size) 
 		{
 			context->extradata = esds->mpeg4_header;
@@ -86,6 +91,12 @@ quicktime_ffmpeg_t* quicktime_new_ffmpeg(int cpus,
 			context->extradata = avcc->data;
 			context->extradata_size = avcc->data_size;
 		}
+		if((user_atom =
+        	 quicktime_stsd_get_user_atom(1, "glbl", &user_atom_len)))
+    		{
+    		context->extradata = user_atom + 8;
+    		context->extradata_size = user_atom_len - 8;
+    		}
 		if(cpus > 1 && 
 				(ffmpeg_id == CODEC_ID_MPEG4 ||
 			         ffmpeg_id == CODEC_ID_MPEG1VIDEO ||
