@@ -94,6 +94,8 @@ quicktime_ffmpeg_t* quicktime_new_ffmpeg(int cpus,
 		if(user_atoms->num_atoms > 0)
 		{
 		printf ("user atoms present! \n");
+		context->extradata = user_atoms->atoms;
+		context->extradata_size = 106;
 		}
 		
 		if(cpus > 1 && 
