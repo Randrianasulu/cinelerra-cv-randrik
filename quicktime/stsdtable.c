@@ -270,6 +270,11 @@ void quicktime_read_stsd_video(quicktime_t *file,
 			table->field_dominance = quicktime_read_char(file);
 		}
 		else
+		{
+		          quicktime_user_atoms_read_atom(file,
+                                     &table->user_atoms,
+                                     &leaf_atom);
+    		}
 			quicktime_atom_skip(file, &leaf_atom);
 
 
@@ -405,6 +410,7 @@ void quicktime_stsd_table_delete(quicktime_stsd_table_t *table)
 	if(table->extradata) free(table->extradata);
 	quicktime_delete_avcc(&(table->avcc));
 	quicktime_delete_esds(&(table->esds));
+	quicktime_user_atoms_delete(&table->user_atoms);
 	
 }
 
