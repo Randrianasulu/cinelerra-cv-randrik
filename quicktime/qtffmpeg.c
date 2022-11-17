@@ -175,6 +175,7 @@ static int decode_wrapper(quicktime_t *file,
     		{
     		stsd_table->esds.mpeg4_header = user_atom + 8;
     		header_bytes = user_atom_len - 8;
+    		stsd_table->esds.mpeg4_header_size = header_bytes;
     		}
 	
 	printf("header_bytes: %i \n", header_bytes);
