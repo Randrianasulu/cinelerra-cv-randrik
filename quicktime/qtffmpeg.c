@@ -32,6 +32,7 @@ quicktime_ffmpeg_t* quicktime_new_ffmpeg(int cpus,
 	quicktime_ffmpeg_t *ptr = calloc(1, sizeof(quicktime_ffmpeg_t));
 	quicktime_esds_t *esds = &stsd_table->esds;
 	quicktime_avcc_t *avcc = &stsd_table->avcc;
+	quicktime_user_atoms_t *user_atoms = &stsd_table->user_atoms;
 	
 	int i;
 	
