@@ -258,6 +258,7 @@ int avcodec_default_get_buffer(AVCodecContext *s, AVFrame *pic){
 
             buf->base[i]= av_malloc(size[i]+16); //FIXME 16
             if(buf->base[i]==NULL) return -1;
+            if(size[i] == 0) return -1;
             memset(buf->base[i], 128, size[i]);
 
             // no edge if EDEG EMU or not planar YUV, we check for PAL8 redundantly to protect against a exploitable bug regression ...

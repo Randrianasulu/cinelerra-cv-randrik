@@ -858,8 +858,9 @@ static int encode(quicktime_t *file, unsigned char **row_pointers, int track)
 		else
 		{
 			int encode_cmodel = BC_YUV420P;
-			if(codec->ffmpeg_id == CODEC_ID_DNXHD)
-			encode_cmodel = BC_YUV422P;
+			if(codec->ffmpeg_id == CODEC_ID_DNXHD){
+			if(width==1920) {codec->bitrate=185*1024*1024;}
+			encode_cmodel = BC_YUV422P;}
 			
 			if(!codec->temp_frame)
 			{
@@ -1292,6 +1293,15 @@ void quicktime_init_codec_dnxhd(quicktime_video_map_t *vtrack)
         "DNXHD",
         "DNXHD");
     result->ffmpeg_id = CODEC_ID_DNXHD;
+}
+
+void quicktime_init_codec_huffyuv(quicktime_video_map_t *vtrack)
+{
+    quicktime_mpeg4_codec_t *result = init_common(vtrack,
+        QUICKTIME_HUFFYUV,
+        "HUFFYUV",
+        "HUFFYUV");
+    result->ffmpeg_id = CODEC_ID_HUFFYUV;
 }
 
 // field based MPEG-4

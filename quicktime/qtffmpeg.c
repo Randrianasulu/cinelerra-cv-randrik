@@ -159,7 +159,8 @@ static int decode_wrapper(quicktime_t *file,
 //printf("decode_wrapper %d\n", frame_number);
 	quicktime_set_video_position(file, frame_number, track);
 
-	bytes = quicktime_frame_size(file, frame_number, track); 
+	bytes = quicktime_frame_size(file, frame_number, track);
+	printf("bytes: %i \n", bytes);
 	if(frame_number == 0)
 	{
 		header_bytes = stsd_table->esds.mpeg4_header_size;
@@ -169,7 +170,7 @@ static int decode_wrapper(quicktime_t *file,
 	{ 
 		if(ffmpeg->work_buffer) free(ffmpeg->work_buffer); 
 		ffmpeg->buffer_size = bytes + header_bytes; 
-		ffmpeg->work_buffer = calloc(1, ffmpeg->buffer_size + 100); 
+		ffmpeg->work_buffer = calloc(1, ffmpeg->buffer_size + 1024); 
 	} 
  
 	if(header_bytes)
