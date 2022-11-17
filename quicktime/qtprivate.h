@@ -75,6 +75,8 @@ typedef struct
 {
   int num_atoms;
   uint8_t ** atoms;
+  int glbl_size;
+  uint8_t ** glbl_atom;
 } quicktime_user_atoms_t;
 
 
