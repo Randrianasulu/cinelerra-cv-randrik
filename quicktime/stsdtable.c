@@ -488,3 +488,20 @@ void quicktime_write_stsd_table(quicktime_t *file, quicktime_minf_t *minf, quick
 
 	quicktime_atom_write_footer(file, &atom);
 }
+
+
+
+uint8_t * quicktime_stsd_get_user_atom(quicktime_trak_t * trak, char * name, uint32_t * len)
+{
+  quicktime_stsd_table_t *table = &trak->mdia.minf.stbl.stsd.table[0];
+  return(quicktime_user_atoms_get_atom(&table->user_atoms, name, len));
+}
+
+void quicktime_stsd_set_user_atom(quicktime_trak_t * trak, char * name,
+                                  uint8_t * data, uint32_t len)
+{
+  quicktime_stsd_table_t *table = &trak->mdia.minf.stbl.stsd.table[0];
+  quicktime_user_atoms_add_atom(&table->user_atoms,
+                                name, data, len);
+
+}
