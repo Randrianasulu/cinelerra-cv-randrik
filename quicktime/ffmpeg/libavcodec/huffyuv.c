@@ -489,8 +489,8 @@ static av_cold int decode_init(AVCodecContext *avctx)
     s->interlaced= s->height > 288;
 
 s->bgr32=1;
-//if(avctx->extradata)
-//  printf("extradata:%X, extradata_size:%d\n", *(uint32_t*)avctx->extradata, avctx->extradata_size);
+if(avctx->extradata)
+  printf("extradata:%X, extradata_size:%d\n", *(uint32_t*)avctx->extradata, avctx->extradata_size);
     if(avctx->extradata_size){
         if((avctx->bits_per_sample&7) && avctx->bits_per_sample != 12)
             s->version=1; // do such files exist at all?
@@ -498,6 +498,8 @@ s->bgr32=1;
             s->version=2;
     }else
         s->version=0;
+
+printf("huff version - %i \n", s->version);
 
     if(s->version==2){
         int method, interlace;
@@ -1006,9 +1008,11 @@ static int decode_frame(AVCodecContext *avctx, void *data, int *data_size, const
     fake_ustride= s->interlaced ? p->linesize[1]*2  : p->linesize[1];
     fake_vstride= s->interlaced ? p->linesize[2]*2  : p->linesize[2];
 
+    printf("interlaced huff %i \n", s->interlaced);
+    printf("huff bitsream bpp %i \n", s->bitstream_bpp);
     s->last_slice_end= 0;
 
-    if(s->bitstream_bpp<24){
+    if(s->bitstream_bpp<24 && s->bitstream_bpp!=0 ){
         int y, cy;
         int lefty, leftu, leftv;
         int lefttopy, lefttopu, lefttopv;

@@ -35,8 +35,7 @@ quicktime_ffmpeg_t* quicktime_new_ffmpeg(int cpus,
 	
 	int i;
 	
-	uint8_t * user_atom;
-	uint32_t user_atom_len;
+	
 
 	ptr->fields = fields;
 	ptr->width = w;
@@ -91,12 +90,7 @@ quicktime_ffmpeg_t* quicktime_new_ffmpeg(int cpus,
 			context->extradata = avcc->data;
 			context->extradata_size = avcc->data_size;
 		}
-		if((user_atom =
-        	 quicktime_stsd_get_user_atom(1, "glbl", &user_atom_len)))
-    		{
-    		context->extradata = user_atom + 8;
-    		context->extradata_size = user_atom_len - 8;
-    		}
+		
 		if(cpus > 1 && 
 				(ffmpeg_id == CODEC_ID_MPEG4 ||
 			         ffmpeg_id == CODEC_ID_MPEG1VIDEO ||
@@ -158,7 +152,11 @@ static int decode_wrapper(quicktime_t *file,
 	int current_field, 
 	int track,
 	int drop_it)
+
 {
+	uint8_t * user_atom;
+	uint32_t user_atom_len = 0;
+
 	int got_picture = 0; 
 	int result = 0; 
 	int bytes = 0;
@@ -171,7 +169,15 @@ static int decode_wrapper(quicktime_t *file,
 	quicktime_set_video_position(file, frame_number, track);
 
 	bytes = quicktime_frame_size(file, frame_number, track);
-	printf("bytes: %i \n", bytes);
+	
+	if((user_atom =
+        	 quicktime_stsd_get_user_atom(trak, "glbl", &user_atom_len)))
+    		{
+    		stsd_table->esds.mpeg4_header = user_atom + 8;
+    		header_bytes = user_atom_len - 8;
+    		}
+	
+	printf("header_bytes: %i \n", header_bytes);
 	if(frame_number == 0)
 	{
 		header_bytes = stsd_table->esds.mpeg4_header_size;

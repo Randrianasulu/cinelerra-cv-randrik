@@ -85,7 +85,7 @@ void quicktime_read_esds(quicktime_t *file,
 
 // Need padding for FFMPEG
 				esds->mpeg4_header = calloc(1, 
-					esds->mpeg4_header_size + 1024);
+					esds->mpeg4_header_size + 16);
 // Get extra data for decoder
 				quicktime_read_data(file, 
 					esds->mpeg4_header, 

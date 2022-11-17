@@ -242,9 +242,9 @@ int avcodec_default_get_buffer(AVCodecContext *s, AVFrame *pic){
 
         tmpsize = ff_fill_pointer(&picture, NULL, s->pix_fmt, h);
 
-        for (i=0; i<3 && picture.data[i+1]; i++)
+        for (i=0; i<3 && picture.data[i+1]; i++) 
             size[i] = picture.data[i+1] - picture.data[i];
-        size[i] = tmpsize - (picture.data[i] - picture.data[0]);
+        size[i] = tmpsize - (picture.data[i] - picture.data[0]); 
 
         buf->last_pic_num= -256*256*256*64;
         memset(buf->base, 0, sizeof(buf->base));
@@ -258,7 +258,7 @@ int avcodec_default_get_buffer(AVCodecContext *s, AVFrame *pic){
 
             buf->base[i]= av_malloc(size[i]+16); //FIXME 16
             if(buf->base[i]==NULL) return -1;
-            if(size[i] == 0) return -1;
+            if(size[i] > 0)
             memset(buf->base[i], 128, size[i]);
 
             // no edge if EDEG EMU or not planar YUV, we check for PAL8 redundantly to protect against a exploitable bug regression ...

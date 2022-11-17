@@ -1295,13 +1295,13 @@ void quicktime_init_codec_dnxhd(quicktime_video_map_t *vtrack)
     result->ffmpeg_id = CODEC_ID_DNXHD;
 }
 
-void quicktime_init_codec_huffyuv(quicktime_video_map_t *vtrack)
+void quicktime_init_codec_ffvhuff(quicktime_video_map_t *vtrack)
 {
     quicktime_mpeg4_codec_t *result = init_common(vtrack,
-        QUICKTIME_HUFFYUV,
-        "HUFFYUV",
-        "HUFFYUV");
-    result->ffmpeg_id = CODEC_ID_HUFFYUV;
+        QUICKTIME_FFVHUFF,
+        "FFVHUFF",
+        "FFVHUFF");
+    result->ffmpeg_id = CODEC_ID_FFVHUFF;
 }
 
 // field based MPEG-4
