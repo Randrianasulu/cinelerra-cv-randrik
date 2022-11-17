@@ -75,10 +75,11 @@ libquicktimecv_la_SOURCES = \
 	stss.c \
 	stsz.c \
 	stts.c \
-													tkhd.c trak.c twos.c udta.c ulaw.c util.c v308.c v408.c v410.c vmhd.c \
+	useratoms.c \
+	tkhd.c trak.c twos.c udta.c ulaw.c util.c v308.c v408.c v410.c vmhd.c \
 	vbraudio.c \
-													vorbis.c workarounds.c yuv2.c yuv4.c yv12.c wmx2.c \
-													wma.c mpeg4.c
+	vorbis.c workarounds.c yuv2.c yuv4.c yv12.c wmx2.c \
+	wma.c mpeg4.c
 
 noinst_HEADERS = cmodel_permutation.h \
 	codecs.h \
