@@ -91,6 +91,10 @@ quicktime_ffmpeg_t* quicktime_new_ffmpeg(int cpus,
 			context->extradata = avcc->data;
 			context->extradata_size = avcc->data_size;
 		}
+		if(user_atoms->num_atoms > 0)
+		{
+		printf ("user atoms present! \n");
+		}
 		
 		if(cpus > 1 && 
 				(ffmpeg_id == CODEC_ID_MPEG4 ||
