@@ -138,6 +138,7 @@ static void quicktime_user_atoms_dump_ACLR(uint8_t const* atom, uint32_t len)
 
 static void quicktime_user_atoms_dump_APRG(uint8_t const* atom, uint32_t len)
   {
+ /*
   if (len >= 12)
     lqt_dump("           Tag: %.4s\n", atom + 8);
   if (len >= 16)
@@ -148,10 +149,14 @@ static void quicktime_user_atoms_dump_APRG(uint8_t const* atom, uint32_t len)
     lqt_dump("           Unknown #2: %u\n", (unsigned)read_be32(atom + 20));
   if (len > 24)
     lqt_dump("           %u more bytes follow\n", (unsigned)(len - 24));
-  }
+  
+  
+*/
+}
 
 static void quicktime_user_atoms_dump_ARES(uint8_t const* atom, uint32_t len)
   {
+/*
   if (len >= 12)
     lqt_dump("           Tag: %.4s\n", atom + 8);
   if (len >= 16)
@@ -170,10 +175,13 @@ static void quicktime_user_atoms_dump_ARES(uint8_t const* atom, uint32_t len)
     lqt_dump("           Unknown #3: %u\n", (unsigned)read_be32(atom + 36));
   if (len > 40)
     lqt_dump("           %u more bytes follow\n", (unsigned)(len - 40));
+ 
+ */
   }
 
 void quicktime_user_atoms_dump(quicktime_user_atoms_t * u)
   {
+/*
   int i;
   uint32_t len;
 
@@ -192,6 +200,7 @@ void quicktime_user_atoms_dump(quicktime_user_atoms_t * u)
     else if (strncmp((char const*)u->atoms[i] + 4, "ARES", 4) == 0)
       quicktime_user_atoms_dump_ARES(u->atoms[i], len);
     }
+*/
   }
 
 

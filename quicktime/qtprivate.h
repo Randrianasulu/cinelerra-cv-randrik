@@ -71,7 +71,11 @@ typedef struct
 
 
 
-
+typedef struct
+{
+  int num_atoms;
+  uint8_t ** atoms;
+} quicktime_user_atoms_t;
 
 
 
@@ -203,6 +207,7 @@ typedef struct
 
 	quicktime_esds_t esds;
 	quicktime_avcc_t avcc;
+	quicktime_user_atoms_t user_atoms;
 
 	int extradata_size;
 	char *extradata;
@@ -833,11 +838,7 @@ typedef struct
 	void (*init_acodec)(quicktime_audio_map_t *);
 } quicktime_codectable_t;
 
-typedef struct
-{
-  int num_atoms;
-  uint8_t ** atoms;
-} quicktime_user_atoms_t;
+
 
 
 #endif
