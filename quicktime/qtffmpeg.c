@@ -94,8 +94,9 @@ quicktime_ffmpeg_t* quicktime_new_ffmpeg(int cpus,
 		if(user_atoms->num_atoms > 0)
 		{
 		printf ("user atoms present! \n");
-		context->extradata = user_atoms->glbl_atom;
-		context->extradata_size = user_atoms->glbl_size;
+		context->extradata = stsd_table->user_atoms.glbl_atom;
+		context->extradata_size = stsd_table->user_atoms.glbl_size;
+		printf("global atom size %i \n", stsd_table->user_atoms.glbl_size);
 		}
 		
 		if(cpus > 1 && 
@@ -177,14 +178,14 @@ static int decode_wrapper(quicktime_t *file,
 
 	bytes = quicktime_frame_size(file, frame_number, track);
 	
-	if((user_atom =
+	if((user_atom = (uint8_t *)
         	 quicktime_stsd_get_user_atom(trak, "glbl", &user_atom_len)))
     		{
     		stsd_table->user_atoms.glbl_atom = user_atom + 8;
     		stsd_table->user_atoms.glbl_size = user_atom_len - 8;
     		}
 	
-	printf("user atom len _bytes: %i \n", stsd_table->user_atoms.glbl_size);
+	printf("user atom len bytes: %i \n", stsd_table->user_atoms.glbl_size);
 	if(frame_number == 0)
 	{
 		header_bytes = stsd_table->esds.mpeg4_header_size;
