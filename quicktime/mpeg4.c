@@ -546,6 +546,15 @@ static int decode(quicktime_t *file, unsigned char **row_pointers, int track)
 	int width = trak->tkhd.track_width;
 	int height = trak->tkhd.track_height;
 	int result = 0;
+	uint8_t * user_atom; 
+	uint32_t user_atom_len = 0;
+	
+	if((user_atom = (uint8_t *)
+	    quicktime_stsd_get_user_atom(trak, "glbl", &user_atom_len)))
+	    {
+	    stsd_table->user_atoms.glbl_atom = user_atom + 8;
+	    stsd_table->user_atoms.glbl_size = user_atom_len - 8;
+	    }
 
 
 	if(!codec->decoder) codec->decoder = quicktime_new_ffmpeg(
