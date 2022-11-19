@@ -174,7 +174,7 @@ void AssetPicon::create_objects()
 			{
 				File *file = mwindow->video_cache->check_out(asset, mwindow->edl);
 
-				if(file)
+				if(file && asset->height)
 				{
 					pixmap_w = pixmap_h * asset->width / asset->height;
 
