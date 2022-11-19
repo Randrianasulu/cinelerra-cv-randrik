@@ -97,6 +97,8 @@ static void register_vcodecs()
 	register_vcodec(quicktime_init_codec_xvid);
 	register_vcodec(quicktime_init_codec_dnxhd);
 	register_vcodec(quicktime_init_codec_ffvhuff);
+	register_vcodec(quicktime_init_codec_huffyuv);
+	register_vcodec(quicktime_init_codec_ffv1);
 	register_vcodec(quicktime_init_codec_svq1);
 	register_vcodec(quicktime_init_codec_svq3);
 	register_vcodec(quicktime_init_codec_h263);

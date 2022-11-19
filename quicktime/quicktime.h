@@ -25,6 +25,8 @@ extern "C" {
 #define QUICKTIME_XVID "XVID"
 #define QUICKTIME_DNXHD "AVdn"
 #define QUICKTIME_FFVHUFF "FFVH"
+#define QUICKTIME_HUFFYUV "HUVY"
+#define QUICKTIME_FFV1 "FFV1"
 #define QUICKTIME_MP4V "mp4v"
 
 #define QUICKTIME_H264 "avc1"

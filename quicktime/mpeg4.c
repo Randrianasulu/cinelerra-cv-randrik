@@ -1313,6 +1313,23 @@ void quicktime_init_codec_ffvhuff(quicktime_video_map_t *vtrack)
     result->ffmpeg_id = CODEC_ID_FFVHUFF;
 }
 
+void quicktime_init_codec_huffyuv(quicktime_video_map_t *vtrack)
+{
+    quicktime_mpeg4_codec_t *result = init_common(vtrack,
+        QUICKTIME_HUFFYUV,
+        "HUFFUYV",
+        "HUFFTUV");
+    result->ffmpeg_id = CODEC_ID_HUFFYUV;
+}
+
+void quicktime_init_codec_ffv1(quicktime_video_map_t *vtrack)
+{
+    quicktime_mpeg4_codec_t *result = init_common(vtrack,
+        QUICKTIME_FFV1,
+        "FFV1",
+        "FFV1");
+    result->ffmpeg_id = CODEC_ID_FFV1;
+}
 // field based MPEG-4
 void quicktime_init_codec_hv60(quicktime_video_map_t *vtrack)
 {
