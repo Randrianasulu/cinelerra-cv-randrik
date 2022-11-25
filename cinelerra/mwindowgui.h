@@ -77,6 +77,7 @@ public:
 	int quit();
 	int save_defaults(BC_Hash *defaults);
 	int menu_h();
+	int stop_playback();
 // Draw on the status bar only.
 	int show_message(char *message, int color = -1);
 // Pop up a box if the statusbar is taken and show an error.

@@ -718,3 +718,9 @@ int MWindowGUI::menu_h()
 {
 	return mainmenu->get_h();
 }
+
+int MWindowGUI::stop_playback()
+{
+	mbuttons->transport->handle_transport(STOP, 1, 0, 0);
+return 1;
+}
