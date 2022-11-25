@@ -55,6 +55,7 @@ int Quit::handle_event()
 	else 
 	{        // quit
 		mwindow->gui->unlock_window();
+		mwindow->gui->stop_playback();
 		mwindow->interrupt_indexes();
 		mwindow->playback_3d->quit();
 		mwindow->gui->lock_window();
@@ -91,6 +92,7 @@ void Quit::run()
 		if(mwindow->gui)
 		{
 			mwindow->interrupt_indexes();
+			mwindow->gui->stop_playback();
 			mwindow->playback_3d->quit();
 		}
 		break;
