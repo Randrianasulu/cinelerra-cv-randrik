@@ -110,7 +110,9 @@ int Save::handle_event()
 		mwindow->session->changes_made = 0;
 // Last command in program
 //		if(saveas->quit_now) mwindow->gui->set_done(0);
-		if(saveas->quit_now) mwindow->playback_3d->quit();
+		if(saveas->quit_now) {
+		mwindow->gui->stop_playback();
+		mwindow->playback_3d->quit();}
 	}
 	return 1;
 }
