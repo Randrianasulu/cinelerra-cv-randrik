@@ -252,7 +252,9 @@ void ResourceThread::run()
 			}
 
 			delete item;
+			
 		}
+	draw_lock->unlock();
 	}
 }
 
