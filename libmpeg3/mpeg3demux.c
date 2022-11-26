@@ -1032,6 +1032,7 @@ static int handle_pcm(mpeg3_demuxer_t *demuxer, int bytes)
 
 	
 //printf(__FUNCTION__ " %02x%02x%02x %d\n", code1, code, code2, pes_packet_length - 3);
+return 0;
 }
 
 

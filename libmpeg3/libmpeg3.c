@@ -268,6 +268,7 @@ static int calculate_packet_size(int is_transport,
 	else
 	if(is_video)
 		return MPEG3_DVD_PACKET_SIZE;
+return -1;
 }
 
 
