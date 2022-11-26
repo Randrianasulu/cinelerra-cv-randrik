@@ -159,7 +159,7 @@ void AssetPicon::create_objects()
 {
 	FileSystem fs;
 	char name[BCTEXTLEN];
-	int pixmap_w, pixmap_h;
+	int pixmap_w=0, pixmap_h;
 
 
 	pixmap_h = 50;
@@ -174,7 +174,7 @@ void AssetPicon::create_objects()
 			{
 				File *file = mwindow->video_cache->check_out(asset, mwindow->edl);
 
-				if(file && asset->height)
+				if(file)
 				{
 					pixmap_w = pixmap_h * asset->width / asset->height;
 
@@ -890,12 +890,14 @@ Asset* AWindowGUI::selected_asset()
 {
 	AssetPicon *picon = (AssetPicon*)asset_list->get_selection(0, 0);
 	if(picon) return picon->asset;
+return NULL;
 }
 
 PluginServer* AWindowGUI::selected_plugin()
 {
 	AssetPicon *picon = (AssetPicon*)asset_list->get_selection(0, 0);
 	if(picon) return picon->plugin;
+return NULL;
 }
 
 AssetPicon* AWindowGUI::selected_folder()
