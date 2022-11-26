@@ -872,6 +872,7 @@ int64_t FileMPEG::get_memory_usage()
 int FileMPEG::write_samples(double **buffer, int64_t len)
 {
 	int result = 0;
+	if (len < 0) return 1;
 
 //printf("FileMPEG::write_samples 1\n");
 	if(asset->ampeg_derivative == 2)
