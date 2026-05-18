@@ -26,8 +26,10 @@
 
 
 
-
+// https://developer.apple.com/library/archive/technotes/tn2162/_index.html
+// 'v410' 4:4:4 Compression Type
 // ********************************* YUV101010 -> *****************************
+
 
 #define READ_YUV101010 \
 	uint64_t y, u, v; \
@@ -36,9 +38,9 @@
 		(input[2] << 16) | \
 		(input[3] << 24); \
  \
-	y = ((input_i & 0xffc00000) >> 16) | 0x3f; \
-	u = ((input_i & 0x3ff000) >> 6) | 0x3f; \
-	v = ((input_i & 0xffc) << 4) | 0x3f;
+	v = ((input_i & 0xffc00000) >> 16) | 0x3f; \
+	y = ((input_i & 0x3ff000) >> 6) | 0x3f; \
+	u = ((input_i & 0xffc) << 4) | 0x3f;
 
 
 
