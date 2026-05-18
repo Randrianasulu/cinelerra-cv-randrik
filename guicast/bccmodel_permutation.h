@@ -90,9 +90,9 @@
 
 #define WRITE_YUV101010(y, u, v) \
 { \
-	uint32_t output_i = ((y & 0xffc0) << 16) | \
-		((u & 0xffc0) << 6) | \
-		((v & 0xffc0) >> 4); \
+	uint32_t output_i = ((v & 0xffc0) << 16) | \
+		((y & 0xffc0) << 6) | \
+		((u & 0xffc0) >> 4); \
 	*(*output)++ = (output_i & 0xff); \
 	*(*output)++ = (output_i & 0xff00) >> 8; \
 	*(*output)++ = (output_i & 0xff0000) >> 16; \
