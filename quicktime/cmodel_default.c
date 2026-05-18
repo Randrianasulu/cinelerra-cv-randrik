@@ -35,9 +35,9 @@
 		(input[2] << 16) | \
 		(input[3] << 24); \
  \
-	y = ((input_i & 0xffc00000) >> 16) | 0x3f; \
-	u = ((input_i & 0x3ff000) >> 6) | 0x3f; \
-	v = ((input_i & 0xffc) << 4) | 0x3f;
+	v = ((input_i & 0xffc00000) >> 16) | 0x3f; \
+	y = ((input_i & 0x3ff000) >> 6) | 0x3f; \
+	u = ((input_i & 0xffc) << 4) | 0x3f;
 
 
 
