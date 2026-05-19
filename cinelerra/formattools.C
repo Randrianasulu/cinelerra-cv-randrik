@@ -57,8 +57,9 @@ const struct container_type ContainerSelection::media_containers[] =
 	{ N_("TGA Sequence"), FILE_TGA_LIST, "TGA_LIST", "list" },
 	{ N_("TIFF"), FILE_TIFF, "TIFF", "tif" },
 	{ N_("TIFF Sequence"), FILE_TIFF_LIST, "TIFF_LIST", "list" },
-	{ N_("MPEG audio"), FILE_AMPEG, "AMPEG", "mpa" },
-	{ N_("MPEG video"), FILE_VMPEG, "VMPEG", "m2v" },
+	{ N_("MPEG audio"), FILE_AMPEG, "MPEG", "mpa" },
+	{ N_("MPEG video"), FILE_VMPEG, "MPEG", "m2v" },
+	{ N_("MPEG"), FILE_MPEG, "MPEG", "mpeg" },
 	{ 0, 0 }
 };
 
