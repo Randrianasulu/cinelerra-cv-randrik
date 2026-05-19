@@ -73,7 +73,6 @@ static double frame_rate_codes[] =
 
 static double aspect_ratio_codes[] =
 {
-	0,
 	1.0,
 	1.333,
 	1.777,
@@ -273,8 +272,10 @@ SET_TRACE
 			if(!result)
 			{
 				append_vcommand_line("mpeg2enc");
-
-
+				if(asset->aspect_ratio == 0) {
+				append_vcommand_line("-a");
+				append_vcommand_line("2");
+				}
 				if(asset->aspect_ratio > 0)
 				{
 					append_vcommand_line("-a");
@@ -369,7 +370,7 @@ SET_TRACE
 					}
 				}
 			}
-			if(aspect_ratio_code < 0)
+			if(aspect_ratio_code < 0 || aspect_ratio_code == 0 )
 			{
 				eprintf("Unsupported aspect ratio %f\n", asset->aspect_ratio);
 				aspect_ratio_code = 2;

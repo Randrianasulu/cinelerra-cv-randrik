@@ -57,7 +57,8 @@ const struct container_type ContainerSelection::media_containers[] =
 	{ N_("TGA Sequence"), FILE_TGA_LIST, "TGA_LIST", "list" },
 	{ N_("TIFF"), FILE_TIFF, "TIFF", "tif" },
 	{ N_("TIFF Sequence"), FILE_TIFF_LIST, "TIFF_LIST", "list" },
-	{ N_("MPEG"), FILE_MPEG, "MPEG", "mpg" },
+	{ N_("MPEG audio"), FILE_AMPEG, "AMPEG", "mpa" },
+	{ N_("MPEG video"), FILE_VMPEG, "VMPEG", "m2v" },
 	{ 0, 0 }
 };
 
@@ -75,6 +76,7 @@ int FormatPopup::frender_menu[] = { FILE_AC3 , FILE_AIFF, FILE_AU,
 	FILE_MOV,
 	FILE_RAWDV,
 	FILE_OGG, FILE_PCM,
+	FILE_AMPEG, FILE_VMPEG,
 	FILE_PNG, FILE_PNG_LIST, FILE_TGA, FILE_TGA_LIST,
 	FILE_TIFF, FILE_TIFF_LIST
 };
