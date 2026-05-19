@@ -658,8 +658,9 @@ static int encode(quicktime_t *file, unsigned char **row_pointers, int track)
 			context->gop_size = codec->gop_size;
 			context->pix_fmt = PIX_FMT_YUV420P;
 			
-			if(codec->ffmpeg_id == CODEC_ID_DNXHD)
+			if(codec->ffmpeg_id == CODEC_ID_DNXHD) {
 			context->pix_fmt = PIX_FMT_YUV422P;
+			codec->bitrate = 90 * 1024 * 1024; } // for 720p
 			
 			context->bit_rate = codec->bitrate / codec->total_fields;
 			context->bit_rate_tolerance = codec->bitrate_tolerance;
