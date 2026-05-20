@@ -56,6 +56,7 @@
 #define FILE_EXR                26
 #define FILE_EXR_LIST           27
 #define FILE_YUV		29	// mjpegtools YUV4MPEG (aka YUV4MPEG2)
+#define FILE_VORBIS             31
 #define FILE_RAWDV		32
 
 // For formats supported by plugins, the format number is the plugin number in the 
