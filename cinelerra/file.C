@@ -39,6 +39,7 @@
 #include "filemov.h"
 #include "filempeg.h"
 #include "fileogg.h"
+#include "filevorbis.h"
 #include "filepng.h"
 #include "filesndfile.h"
 #include "filetga.h"
@@ -240,6 +241,13 @@ int File::get_options(FormatTools *format,
 			break;
 		case FILE_OGG:
 			FileOGG::get_parameters(parent_window,
+				asset,
+				format_window,
+				audio_options,
+				video_options);
+			break;
+		case FILE_VORBIS:
+			FileVorbis::get_parameters(parent_window,
 				asset,
 				format_window,
 				audio_options,
@@ -489,6 +497,10 @@ int File::open_file(Preferences *preferences,
 
 		case FILE_OGG:
 			file = new FileOGG(this->asset, this);
+			break;
+		
+		case FILE_VORBIS:
+			file = new FileVorbis(this->asset, this);
 			break;
 
 		case FILE_AVI:
@@ -1127,6 +1139,7 @@ int File::supports(int format)
 	case FILE_SND:
 	case FILE_WAV:
 	case FILE_AMPEG:
+	case FILE_VORBIS:
 		return SUPPORTS_AUDIO;
 
 	case FILE_AVI:

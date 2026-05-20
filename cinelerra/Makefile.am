@@ -148,6 +148,7 @@ cinelerracv_SOURCES = aattachmentpoint.C \
 		    filetiff.C \
 		    filexml.C \
 		    fileyuv.C \
+		    filevorbis.C \
 		    floatauto.C \
 		    floatautos.C \
 		    formatcheck.C \
